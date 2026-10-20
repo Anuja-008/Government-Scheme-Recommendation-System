@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GovSchemes | Government Scheme Finder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= LOGIN / REGISTER ================= -->
+<section id="authScreen" class="auth-screen">
+  <div class="auth-wrap">
+
+    <div class="auth-showcase">
+      <div class="brand"><span class="logo">&#10048;</span>
+        <div><b>GovSchemes</b><small>Better Opportunities. Brighter Future.</small></div>
+      </div>
+      <h2>Find the schemes you deserve.</h2>
+      <p>Tell us a little about yourself and discover government schemes that match your profile.</p>
+      <ul>
+        <li>50+ national and state schemes</li>
+        <li>Matched on age, income, occupation and state</li>
+        <li>Direct links to official websites</li>
+      </ul>
+    </div>
+
+    <div class="auth-card">
+
+      <div id="loginPanel">
+        <h1>Welcome back</h1>
+        <p class="sub">Sign in to continue to GovSchemes.</p>
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <label for="loginEmail">Email address</label>
+            <input id="loginEmail" type="email" placeholder="you@example.com" autocomplete="username">
+          </div>
+          <div class="field">
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" type="password" placeholder="Enter your password" autocomplete="current-password">
+          </div>
+          <button class="btn-primary" type="submit">Sign in</button>
+          <p id="loginMessage" class="msg" role="alert"></p>
+        </form>
+        <p class="switch">New here?
+          <button type="button" class="link-btn" id="showRegister">Create an account</button>
+        </p>
+        <button type="button" class="btn-ghost" id="guestBtn">Continue as guest</button>
+        <div class="demo-note">
+          <b>Demo login</b><br>
+          Email: demo@govschemes.in &nbsp;|&nbsp; Password: Scheme@123
+        </div>
+      </div>
+
+      <div id="registerPanel" class="hidden">
+        <h1>Create account</h1>
+        <p class="sub">Register to save schemes and your profile.</p>
+        <form id="registerForm" novalidate>
+          <div class="field">
+            <label for="registerName">Full name</label>
+            <input id="registerName" type="text" placeholder="Enter your full name" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="registerEmail">Email address</label>
+            <input id="registerEmail" type="email" placeholder="you@example.com" autocomplete="username">
+          </div>
+          <div class="field">
+            <label for="registerPassword">Password</label>
+            <input id="registerPassword" type="password" placeholder="At least 6 characters" autocomplete="new-password">
+          </div>
+          <button class="btn-primary" type="submit">Create account</button>
+          <p id="registerMessage" class="msg" role="alert"></p>
+        </form>
+        <p class="switch">Already registered?
+          <button type="button" class="link-btn" id="showLogin">Sign in</button>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= DASHBOARD ================= -->
+<div id="app" class="app hidden">
+
+  <header class="topbar">
+    <div class="brand"><span class="logo">&#10048;</span>
+      <div><b>GovSchemes</b><small>Better Opportunities. Brighter Future.</small></div>
+    </div>
+    <div class="top-search">
+      <span aria-hidden="true">&#9906;</span>
+      <input id="topSearch" type="search" placeholder="Search schemes..." aria-label="Search schemes">
+    </div>
+    <div class="user-chip">
+      <div id="userInitial" class="avatar">G</div>
+      <span id="userName">Guest User</span>
+      <button id="logoutBtn" class="logout" type="button">Log out</button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <nav>
+        <button class="nav-item active" data-view="home"><i>&#8962;</i> Home</button>
+        <button class="nav-item" data-view="profile"><i>&#9786;</i> My Profile</button>
+        <button class="nav-item" data-view="finder"><i>&#9906;</i> Scheme Finder</button>
+        <button class="nav-item" data-view="saved"><i>&#9734;</i> Saved Schemes</button>
+        <button class="nav-item" data-view="about"><i>?</i> About</button>
+      </nav>
+      <div class="side-card">
+        <b>Government Schemes<br>for a Better Tomorrow</b>
+        <svg viewBox="0 0 200 50" aria-hidden="true"><path d="M0 40 C40 5 70 55 110 25 S170 10 200 30 L200 50 L0 50Z" fill="#4f46e5" opacity=".45"/><path d="M0 44 C50 15 80 50 120 32 S175 22 200 38" fill="none" stroke="#8b7bff" stroke-width="2"/></svg>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <!-- HOME VIEW -->
+      <div id="view-home" class="view">
+
+        <section class="hero">
+          <span class="chip">Empowering Citizens</span>
+          <h1>Find the Right <em>Government Schemes</em> for You</h1>
+          <p>Enter your details and discover schemes that match your profile and help you build a better future.</p>
+        </section>
+
+        <div class="grid-top">
+
+          <section class="panel" id="profileSection">
+            <div class="panel-head">
+              <div class="icon-badge">&#9786;</div>
+              <div><h2>Your Profile</h2><p>Tell us about yourself to get personalized scheme recommendations.</p></div>
+            </div>
+
+            <form id="profileForm" novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="age">Age</label>
+                  <input id="age" type="number" min="1" max="119" placeholder="Enter your age">
+                </div>
+                <div class="field">
+                  <label for="annualIncome">Annual Family Income (&#8377;)</label>
+                  <input id="annualIncome" type="number" min="0" placeholder="Example: 200000">
+                </div>
+                <div class="field">
+                  <label for="occupation">Occupation</label>
+                  <select id="occupation">
+                    <option value="">Select occupation</option>
+                    <option value="student">Student</option>
+                    <option value="farmer">Farmer</option>
+                    <option value="self-employed">Self-employed</option>
+                    <option value="unemployed">Unemployed</option>
+                    <option value="labour">Labourer</option>
+                    <option value="fisherman">Fisherman</option>
+                    <option value="employee">Employee</option>
+                    <option value="any">Other</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="gender">Gender</label>
+                  <select id="gender">
+                    <option value="">Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="caste">Community / Caste Category</label>
+                  <select id="caste">
+                    <option value="">Select category</option>
+                    <option value="OC">OC / General</option>
+                    <option value="BC">BC</option>
+                    <option value="MBC">MBC / DNC</option>
+                    <option value="SC">SC</option>
+                    <option value="ST">ST</option>
+                    <option value="any">Prefer not to say / Other</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="state">State</label>
+                  <select id="state"><option value="">Select your state</option></select>
+                </div>
+              </div>
+              <button id="submitButton" class="btn-primary wide" type="submit">&#9906; Find My Schemes &rarr;</button>
+              <p id="formMessage" class="msg" role="alert"></p>
+              <p class="secure">&#128274; Your information is secure and used only for scheme recommendations.</p>
+            </form>
+          </section>
+
+          <div class="side-col">
+            <section class="panel">
+              <h3 class="mini-title">Quick Stats</h3>
+              <div class="stats">
+                <div><b id="statSchemes">50+</b><span>Schemes Available</span></div>
+                <div><b>28</b><span>States Covered</span></div>
+                <div><b>6</b><span>Categories</span></div>
+              </div>
+            </section>
+
+            <section class="panel">
+              <h3 class="mini-title">Popular Categories</h3>
+              <div class="cats">
+                <button class="cat c-edu" data-cat="student"><i>&#127891;</i> Education</button>
+                <button class="cat c-health" data-cat="health"><i>&#9829;</i> Health</button>
+                <button class="cat c-agri" data-cat="farmer"><i>&#127793;</i> Agriculture</button>
+                <button class="cat c-emp" data-cat="unemployed"><i>&#128188;</i> Employment</button>
+                <button class="cat c-women" data-cat="female"><i>&#9792;</i> Women &amp; Child</button>
+                <button class="cat c-social" data-cat="labour"><i>&#9775;</i> Social Welfare</button>
+              </div>
+              <div class="didyou">
+                <i>&#128161;</i>
+                <p><b>Did You Know?</b><br>Many schemes have special provisions for SC/ST, BPL and differently abled citizens.</p>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- EXPLORE -->
+        <section class="panel" id="exploreSection">
+          <div class="panel-head spread">
+            <div class="panel-head">
+              <div class="icon-badge">&#9776;</div>
+              <div><h2>Explore Schemes</h2><p id="resultSubtitle">Browse and find the best schemes based on your profile.</p></div>
+            </div>
+            <div class="tools">
+              <div class="tabs" role="tablist">
+                <button class="tab active" data-kind="all" role="tab">All Schemes</button>
+                <button class="tab" data-kind="national" role="tab">National Schemes</button>
+                <button class="tab" data-kind="state" role="tab">State Schemes</button>
+              </div>
+              <input id="schemeSearch" class="search-small" type="search" placeholder="Search schemes..." aria-label="Search schemes">
+            </div>
+          </div>
+
+          <div id="statusMessage" class="status" hidden></div>
+          <div id="schemeResults" class="scheme-grid"></div>
+        </section>
+
+      </div>
+
+      <!-- SAVED VIEW -->
+      <div id="view-saved" class="view hidden">
+        <section class="panel">
+          <div class="panel-head">
+            <div class="icon-badge">&#9734;</div>
+            <div><h2>Saved Schemes</h2><p>Schemes you saved on this device.</p></div>
+          </div>
+          <div id="savedResults" class="scheme-grid"></div>
+        </section>
+      </div>
+
+      <!-- ABOUT VIEW -->
+      <div id="view-about" class="view hidden">
+        <section class="panel about">
+          <h2>About GovSchemes</h2>
+          <p>GovSchemes is a Government Scheme Recommendation System. You enter your age, income, occupation, gender, category and state, and the application returns schemes that match your profile.</p>
+          <p>Always confirm eligibility and application steps on the official scheme website before applying.</p>
+        </section>
+      </div>
+
+      <footer class="footer">
+        <span>&#128737; Government Scheme Recommendation System &middot; Helping You Access Your Rights</span>
+        <span>Secure &middot; Reliable &middot; For a Better Tomorrow</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<!-- ================= SCHEME DETAILS MODAL ================= -->
+<div id="schemeModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div>
+        <div class="modal-tags">
+          <span id="modalLevelTag" class="scheme-tag">National</span>
+          <span id="modalStateTag" class="state-tag hidden">State</span>
+          <span id="modalCategoryTag" class="cat-tag">All Citizens</span>
+        </div>
+        <h2 id="modalTitle">Scheme Name</h2>
+      </div>
+      <button id="modalCloseBtn" class="modal-close" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <h3>Description</h3>
+        <p id="modalDescription">Scheme description goes here.</p>
+      </div>
+      <div class="modal-section">
+        <h3>Key Benefits</h3>
+        <div id="modalBenefits" class="benefit-box">Benefits information.</div>
+      </div>
+      <div class="modal-section">
+        <h3>Eligibility Criteria</h3>
+        <div class="eligibility-grid">
+          <div><span>Eligible Age:</span> <b id="modalAge">Any</b></div>
+          <div><span>Income Limit:</span> <b id="modalIncome">No limit</b></div>
+          <div><span>Target Occupation:</span> <b id="modalOccupation">Any</b></div>
+          <div><span>Gender:</span> <b id="modalGender">Any</b></div>
+          <div><span>Category / Caste:</span> <b id="modalCaste">All categories</b></div>
+          <div><span>State / Territory:</span> <b id="modalState">All India</b></div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <h3>Required Documents</h3>
+        <p id="modalDocuments">Documents details.</p>
+      </div>
+      <div class="modal-section">
+        <h3>How to Apply</h3>
+        <p id="modalProcess">Application process.</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a id="modalOfficialLink" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary-action">
+        Open Official Scheme Portal &nearr;
+      </a>
+      <button id="modalDismissBtn" type="button" class="btn-ghost-modal">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
